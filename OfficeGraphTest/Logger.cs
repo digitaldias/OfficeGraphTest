@@ -1,6 +1,5 @@
 ﻿using OfficeGraphTest.Domain.Contracts;
 using System;
-using System.Diagnostics;
 
 namespace OfficeGraphTest
 {
@@ -9,9 +8,15 @@ namespace OfficeGraphTest
     /// </summary>
     public class Logger : ILogger
     {
+        public void LogError(string errorMessage)
+        {
+            Console.WriteLine($"ERROR: {errorMessage}");
+        }
+
+
         public void LogException(Exception exception)
         {
-            Debug.WriteLine($"EXCEPTION>> {exception.Message} <<<");
+            Console.WriteLine($"EXCEPTION>> {exception.Message} <<<");
         }
     }
 }

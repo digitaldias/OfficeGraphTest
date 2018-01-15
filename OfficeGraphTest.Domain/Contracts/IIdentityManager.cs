@@ -2,5 +2,6 @@
 {
     public interface IIdentityManager
     {
+        bool SignIn();
     }
 }
