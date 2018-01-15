@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{37F53940-BF2E-459E-BD3F-C6F94497D6CF}</ProjectGuid>
+    <ProjectGuid>{029A0FDB-FA3E-4CAE-A803-54A928948BD0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OfficeGraphTest.Business</RootNamespace>
-    <AssemblyName>OfficeGraphTest.Business</AssemblyName>
+    <RootNamespace>OfficeGraphTest.Data.Http</RootNamespace>
+    <AssemblyName>OfficeGraphTest.Data.Http</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,13 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExceptionHandler.cs" />
-    <Compile Include="OfficeGraphClient.cs" />
+    <Compile Include="OfficeGraphReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OfficeGraphTest.Domain\OfficeGraphTest.Domain.csproj">
-      <Project>{283d7a4f-66a7-4e43-9045-b9b82617ea6e}</Project>
+      <Project>{283D7A4F-66A7-4E43-9045-B9B82617EA6E}</Project>
       <Name>OfficeGraphTest.Domain</Name>
     </ProjectReference>
   </ItemGroup>

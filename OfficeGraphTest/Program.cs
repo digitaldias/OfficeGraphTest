@@ -23,7 +23,7 @@ namespace OfficeGraphTest
             IOfficeGraphClient officeGraphClient = CreateAndInializeOfficeGraphClient();
 
             // and then, we can start to explore the fun stuff!!
-            var me = officeGraphClient.GetMyInformationAsync();
+            var me = await officeGraphClient.GetMyInformationAsync();
         }
 
 
