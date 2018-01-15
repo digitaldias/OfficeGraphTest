@@ -31,11 +31,36 @@ namespace OfficeGraphTest.CrossCutting.TestHelpers
 
 
         /// <summary>
+        /// Allows you to inject your own concrete implementation of a TContract. 
+        /// NOTE: MUST be called witin DoBeforeInstanceCreation()!! 
+        /// </summary>
+        public void Inject<TContract>(TContract with) where TContract : class
+        {            
+            AutoMock.Inject<TContract>(with);
+        }
+
+
+        public void EjectAllInstancesOf<TContract>() where TContract : class
+        {
+            AutoMock.Container.EjectAllInstancesOf<TContract>();
+        }
+
+
+        /// <summary>
         /// Returns the mock that owns the instance of TContract
         /// </summary>
         public Mock<TContract> GetMockFor<TContract>() where TContract : class
         {
-            return Mock.Get(AutoMock.Get<TContract>());
+            return Mock.Get(GetInstance<TContract>());
+        }
+
+
+        /// <summary>
+        /// Returns the given instance of TContract
+        /// </summary>
+        public TContract GetInstance<TContract>() where TContract : class
+        {
+            return AutoMock.Get<TContract>();
         }
     }
 }

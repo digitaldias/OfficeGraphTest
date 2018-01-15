@@ -5,7 +5,7 @@ namespace OfficeGraphTest.Domain.Contracts
 {
     public interface IOfficeGraphClient
     {
-        bool Initialize(IIdentityManager identityManager);
+        bool Initialize();
 
         Task<GraphUser> GetMyInformationAsync();
     }
