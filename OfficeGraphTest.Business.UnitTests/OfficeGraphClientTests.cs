@@ -59,7 +59,7 @@ namespace OfficeGraphTest.Business.UnitTests
             Instance.Initialize();
 
             // Assert
-            GetMockFor<IIdentityManager>().Verify(o => o.SignIn(), Times.AtLeastOnce());
+            GetMockFor<IIdentityManager>().Verify(o => o.SignIn(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
 
@@ -68,7 +68,7 @@ namespace OfficeGraphTest.Business.UnitTests
         {
             // Arrange
             GetMockFor<IIdentityManager>()
-                .Setup(o => o.SignIn())
+                .Setup(o => o.SignIn(It.IsAny<string>()))
                 .Returns(true);
 
             // Act
@@ -83,7 +83,7 @@ namespace OfficeGraphTest.Business.UnitTests
         public void Initialize_SignInFails_ReturnsFalse()
         {
             // Arrange
-            GetMockFor<IIdentityManager>().Setup(o => o.SignIn()).Returns(false);
+            GetMockFor<IIdentityManager>().Setup(o => o.SignIn(It.IsAny<string>())).Returns(false);
 
             // Act
             var result = Instance.Initialize();
@@ -98,7 +98,7 @@ namespace OfficeGraphTest.Business.UnitTests
         {
             // Arrange
             GetMockFor<IIdentityManager>()
-                .Setup(o => o.SignIn())
+                .Setup(o => o.SignIn(It.IsAny<string>()))
                 .Returns(false);
 
             // Act
@@ -116,7 +116,7 @@ namespace OfficeGraphTest.Business.UnitTests
             // Arrange
             var badException = new Exception("I'm bad");
             GetMockFor<IIdentityManager>()
-                .Setup(o => o.SignIn()).Throws(badException);
+                .Setup(o => o.SignIn(It.IsAny<string>())).Throws(badException);
 
             // Act
             var result = Instance.Initialize();
@@ -132,7 +132,7 @@ namespace OfficeGraphTest.Business.UnitTests
             // Arrange
             var badException = new Exception("I'm bad");
             GetMockFor<IIdentityManager>()
-                .Setup(o => o.SignIn()).Throws(badException);
+                .Setup(o => o.SignIn(It.IsAny<string>())).Throws(badException);
 
             // Act
             var result = Instance.Initialize();

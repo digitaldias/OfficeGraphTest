@@ -42,7 +42,7 @@ namespace OfficeGraphTest
             // Next, well need to connect to the office graph api, and pass it our identity token
             var officeGraphClient = _container.GetInstance<IOfficeGraphClient>();
 
-            if (!officeGraphClient.Initialize(identityManager))
+            if (!officeGraphClient.Initialize())
                 return null;
 
             return officeGraphClient;

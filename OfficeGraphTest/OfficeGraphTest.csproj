@@ -36,6 +36,7 @@
       <HintPath>..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,12 +50,21 @@
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OfficeGraphTest.Business\OfficeGraphTest.Business.csproj">
+      <Project>{37f53940-bf2e-459e-bd3f-c6f94497d6cf}</Project>
+      <Name>OfficeGraphTest.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OfficeGraphTest.Data.Http\OfficeGraphTest.Data.Http.csproj">
+      <Project>{029a0fdb-fa3e-4cae-a803-54a928948bd0}</Project>
+      <Name>OfficeGraphTest.Data.Http</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OfficeGraphTest.Domain\OfficeGraphTest.Domain.csproj">
       <Project>{283D7A4F-66A7-4E43-9045-B9B82617EA6E}</Project>
       <Name>OfficeGraphTest.Domain</Name>

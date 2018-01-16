@@ -11,15 +11,16 @@ namespace OfficeGraphTest.Business
         private readonly ILogger _logger;
         private readonly IIdentityManager _identityManager;
         private readonly IOfficeGraphReader _officeGraphReader;
-        
+        private readonly ISettings _settings;
 
-        public OfficeGraphClient(IExceptionHandler exceptionHandler, ILogger logger, IIdentityManager identityManager,  IOfficeGraphReader officeGraphReader)
+        public OfficeGraphClient(IExceptionHandler exceptionHandler, ILogger logger, IIdentityManager identityManager,  IOfficeGraphReader officeGraphReader, ISettings settings)
         {
             _exceptionHandler  = exceptionHandler;
             _logger            = logger;
 
             _identityManager   = identityManager;
             _officeGraphReader = officeGraphReader;
+            _settings          = settings;
         }
 
 
@@ -45,7 +46,7 @@ namespace OfficeGraphTest.Business
             }
 
             var signInSuccess = _exceptionHandler.Get(() => 
-                _identityManager.SignIn()
+                _identityManager.SignIn(_settings["officeGraphResource"])
              );            
 
             if(!signInSuccess)
