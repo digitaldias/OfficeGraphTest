@@ -8,5 +8,9 @@ namespace OfficeGraphTest.Domain.Contracts
         bool Initialize();
 
         Task<GraphUser> GetMyInformationAsync();
+
+        Task<byte[]> GetMyImageBytesAsync();
+
+        Task<ContactList> GetMyContactsAsync();
     }
 }

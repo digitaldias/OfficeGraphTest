@@ -24,6 +24,29 @@ namespace OfficeGraphTest.Business
         }
 
 
+        public async Task<ContactList> GetMyContactsAsync()
+        {
+            return await _exceptionHandler.GetAsync(async () =>
+            {
+                var contactsAsJson = await _officeGraphReader.GetMyContactsAsync(_identityManager.BearerToken);
+
+                if (!string.IsNullOrEmpty(contactsAsJson))
+                {
+                    return JsonConvert.DeserializeObject<ContactList>(contactsAsJson);
+                }
+                return null;
+            });
+        }
+
+
+        public async Task<byte[]> GetMyImageBytesAsync()
+        {
+            return await _exceptionHandler.GetAsync(() => 
+                _officeGraphReader.GetImageBytesAsync(_identityManager.BearerToken)
+            );
+        }
+
+
         public async Task<GraphUser> GetMyInformationAsync()
         {
             var graphUserAsJson = await _exceptionHandler.GetAsync(() =>

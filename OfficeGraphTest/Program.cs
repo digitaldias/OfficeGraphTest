@@ -31,6 +31,8 @@ namespace OfficeGraphTest
 
             // and then, we can start to explore the fun stuff!!
             var me = await officeGraphClient.GetMyInformationAsync();
+
+            System.Console.WriteLine($"Allright, {me.givenName}, let's do this: ");
         }
 
 

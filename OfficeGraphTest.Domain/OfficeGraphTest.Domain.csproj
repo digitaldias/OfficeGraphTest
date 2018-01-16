@@ -46,6 +46,7 @@
     <Compile Include="Contracts\IOfficeGraphClient.cs" />
     <Compile Include="Contracts\IOfficeGraphReader.cs" />
     <Compile Include="Contracts\ISettings.cs" />
+    <Compile Include="Entities\ContactList.cs" />
     <Compile Include="Entities\GraphUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
