@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 namespace OfficeGraphTest.Data.Http
 {
     public class OfficeGraphReader : IOfficeGraphReader
-    {
-        private const string VERSION          = "beta";
+    {        
         private const string PATH_ME          = "me";
         private const string PATH_ME_IMAGE    = "me/photo/$value";
         private const string PATH_ME_CONTACTS = "me/contacts";
@@ -28,6 +27,9 @@ namespace OfficeGraphTest.Data.Http
 
         public async Task<byte[]> GetImageBytesAsync(string bearerToken)
         {
+            if (string.IsNullOrEmpty(bearerToken))
+                return null;
+
             Uri finalUri = ConstructFinalGraphUri(bearerToken, PATH_ME_IMAGE);
 
             var responseMessage = await _httpClient.GetAsync(finalUri);
@@ -69,7 +71,7 @@ namespace OfficeGraphTest.Data.Http
 
         private Uri ConstructFinalGraphUri(string bearerToken, string method)
         {
-            var finalUri = new Uri($"{_settings["officeGraphResource"]}/{VERSION}/{method}/");
+            var finalUri = new Uri($"{_settings["officeGraphResource"]}/{_settings["graphVersion"]}/{method}/");
 
             _httpClient.DefaultRequestHeaders.Remove("authorization");
             _httpClient.DefaultRequestHeaders.Add("authorization", bearerToken);

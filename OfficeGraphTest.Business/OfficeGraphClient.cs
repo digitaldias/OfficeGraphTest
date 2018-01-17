@@ -70,6 +70,9 @@ namespace OfficeGraphTest.Business
 
         public async Task<GraphUser> GetMyInformationAsync()
         {
+            if (!_identityManager.IsSignedIn)
+                return null;
+
             var graphUserAsJson = await _exceptionHandler.GetAsync(() =>
                 _officeGraphReader.GetMyInformationAsync(_identityManager.BearerToken)
             );
@@ -90,7 +93,7 @@ namespace OfficeGraphTest.Business
             if (!wasSignedOut)
             {
                 _logger.logWarning("Something went wrong when signing out");
-            }
+            }           
         }
     }
 }

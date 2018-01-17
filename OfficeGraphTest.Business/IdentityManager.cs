@@ -35,8 +35,8 @@ namespace OfficeGraphTest.Business
             var clientId              = _settings["applicationId"];
             var redirectUri           = new Uri(_settings["redirectUri"]);
 
-            _authenticationContext = new AuthenticationContext(authority);
-            var parameters = new PlatformParameters(PromptBehavior.Auto);
+            _authenticationContext = new AuthenticationContext(authority, true, null);
+            var parameters = new PlatformParameters(PromptBehavior.SelectAccount);
 
 
             var token = _authenticationContext.AcquireTokenAsync(resource, clientId, redirectUri, parameters).Result;
@@ -51,7 +51,7 @@ namespace OfficeGraphTest.Business
         {
             var logoutUri = new Uri($"{_settings["authority"]}/oauth2/logout?post_logout_redirect_uri={_settings["redirectUri"]}");
 
-            _authenticationContext.TokenCache.Clear();
+            _authenticationContext.TokenCache?.Clear();
 
             var client   = new HttpClient();
             var request  = new HttpRequestMessage(HttpMethod.Get, logoutUri);

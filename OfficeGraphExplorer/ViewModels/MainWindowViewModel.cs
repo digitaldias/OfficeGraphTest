@@ -8,6 +8,9 @@ namespace OfficeGraphExplorer.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
+        private const string SIGN_IN  = "Sign In";
+        private const string SIGN_OUT = "Sign Out";
+
         private readonly IOfficeGraphClient _officeGraphClient;
 
         private GraphUser    _me;
@@ -15,6 +18,7 @@ namespace OfficeGraphExplorer.ViewModels
         private RelayCommand _reloadCommand;
         private string       _statusMessage;
         private RelayCommand _getContactsCommand;
+        private RelayCommand _signInOrOutCommand;
 
         // SignIn Button
         private string          _signInButtonText;
@@ -28,15 +32,26 @@ namespace OfficeGraphExplorer.ViewModels
             //TODO: Dirty, let's fix this sometime soon, and NOT use a static IoC Container for resolving dependencies!
             _officeGraphClient = App.IoC.GetInstance<IOfficeGraphClient>();
 
-            var initalized = _officeGraphClient.Initialize();
-
             _signInButtonText        = "Sign In";
             _signInButtonColor       = new SolidColorBrush(Colors.DarkGreen);
             _signInButtonFontWeight  = FontWeights.Bold;
             _signInButtonForeground  = new SolidColorBrush(Colors.White);
         }
 
+
         #region Bindable Properties and Commands 
+
+
+        public ICommand SignInOrOutCommand
+        {
+            get
+            {
+                if (_signInOrOutCommand == null)
+                    _signInOrOutCommand = new RelayCommand(OnSignInOrOut);
+
+                return _signInOrOutCommand;
+            }
+        }
 
 
         public Brush SignInButtonForeground
@@ -126,7 +141,35 @@ namespace OfficeGraphExplorer.ViewModels
         #endregion
 
 
-        #region Private helper methods
+        #region Private helper methods                
+
+
+        private async void OnSignInOrOut()
+        {
+            // EEP, cheesy!!
+            if(_signInButtonText == SIGN_IN)
+            {
+                StatusMessage     = "Signing in";
+                SignInButtonText  = SIGN_OUT;
+                SignInButtonColor = new SolidColorBrush(Colors.Red);
+
+                if(_officeGraphClient.Initialize())
+                {
+                    OnReload();
+                }
+            }
+            else
+            {
+                StatusMessage     = "Signing out..";
+                SignInButtonText  = SIGN_IN;
+                SignInButtonColor = new SolidColorBrush(Colors.Green);
+                await _officeGraphClient.SignOut();
+
+                _me = null; AnnounceProperty(nameof(Me));
+                _myImageUrl = null; AnnounceProperty(nameof(MyImage));
+            }
+            StatusMessage = "Ok";
+        }
 
         private async void OnGetContacts()
         {
@@ -154,14 +197,21 @@ namespace OfficeGraphExplorer.ViewModels
         private async void RetrieveMyImage()
         {
             _myImageUrl = await _officeGraphClient.GetMyImageBytesAsync();
-            AnnounceProperty("MyImage");
+
+            if(_myImageUrl != null)
+            {
+                AnnounceProperty("MyImage");
+            }
         }
 
 
         public async void RetrieveMyInformation()
         {
             _me = await _officeGraphClient.GetMyInformationAsync();
-            AnnounceProperty("Me");
+            if(_me != null)
+            {
+                AnnounceProperty("Me");
+            }
         }
 
         #endregion
