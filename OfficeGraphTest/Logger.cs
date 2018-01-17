@@ -18,5 +18,11 @@ namespace OfficeGraphTest
         {
             Console.WriteLine($"EXCEPTION>> {exception.Message} <<<");
         }
+
+
+        public void logWarning(string warningMessage)
+        {
+            Console.WriteLine($"Warning: {warningMessage}");
+        }
     }
 }

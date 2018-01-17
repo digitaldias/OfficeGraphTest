@@ -11,9 +11,16 @@ namespace OfficeGraphExplorer
             Debug.WriteLine("ERROR: " + errorMessage);
         }
 
+
         public void LogException(Exception exception)
         {
             Debug.WriteLine("EXCPETION>> " + exception.Message);
+        }
+
+
+        public void logWarning(string warningMessage)
+        {
+            Debug.WriteLine("Warning: " + warningMessage);
         }
     }
 }
