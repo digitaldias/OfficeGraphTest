@@ -8,10 +8,10 @@ namespace OfficeGraphTest.Business
     public class IdentityManager : IIdentityManager
     {
         private readonly IExceptionHandler _exceptionHandler;
-        private readonly ISettings _settings;
-        private string _bearerToken;
+        private readonly ISettings         _settings;
+        private string                     _bearerToken;
+        private AuthenticationContext      _authenticationContext;
 
-        private AuthenticationContext _authenticationContext;
 
         public IdentityManager(IExceptionHandler exceptionHandler, ISettings settings)
         {
@@ -21,6 +21,9 @@ namespace OfficeGraphTest.Business
 
 
         public string BearerToken => _bearerToken;
+
+
+        public bool IsSignedIn => string.IsNullOrEmpty(_bearerToken) == false;
 
 
         public bool SignIn(string resource)
@@ -53,11 +56,17 @@ namespace OfficeGraphTest.Business
 
             _authenticationContext.TokenCache.Clear();
 
-            var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, logoutUri);
+            var client   = new HttpClient();
+            var request  = new HttpRequestMessage(HttpMethod.Get, logoutUri);
             var response = client.SendAsync(request).Result;
 
-            return response.IsSuccessStatusCode;
+            //TODO: I don't feel logged out in spite of a success code...
+            if(response.IsSuccessStatusCode)
+            {
+                _bearerToken = string.Empty;
+                return true;
+            }
+            return false;
         }
     }
 }

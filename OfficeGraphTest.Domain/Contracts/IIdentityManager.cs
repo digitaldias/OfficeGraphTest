@@ -4,6 +4,8 @@
     {
         string BearerToken { get; }
 
+        bool IsSignedIn { get; }
+
         bool SignIn(string resource);
 
         bool SignOut(string resource);
