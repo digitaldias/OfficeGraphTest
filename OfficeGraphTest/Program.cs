@@ -27,21 +27,16 @@ namespace OfficeGraphTest
                 System.Console.WriteLine("Unable to continue");
                 return;
             }
-
-
-            // and then, we can start to explore the fun stuff!!
+            
             var me = await officeGraphClient.GetMyInformationAsync();
 
-            System.Console.WriteLine($"Allright, {me.givenName}, let's do this: ");
+            System.Console.WriteLine($"Allright, {me.givenName}, let's do this!");
         }
 
 
         private static IOfficeGraphClient CreateAndInializeOfficeGraphClient()
         {
-            // First, we'll need to authenticate ourselves against a trusted identity provider
-            var identityManager = _container.GetInstance<IIdentityManager>();
-
-            // Next, well need to connect to the office graph api, and pass it our identity token
+            var identityManager   = _container.GetInstance<IIdentityManager>();
             var officeGraphClient = _container.GetInstance<IOfficeGraphClient>();
 
             if (!officeGraphClient.Initialize())
