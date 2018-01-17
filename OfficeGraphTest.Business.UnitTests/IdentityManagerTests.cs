@@ -34,24 +34,13 @@ namespace OfficeGraphTest.Business.UnitTests
 
 
         [Fact, Trait("Category", "Integration")]
-        public void SignOut_resourceIsNull_ThrowsArgumentNullException()
-        {
-            // Arrange
-            string nullResource = null;
-
-            // Act, Assert
-            Assert.Throws<ArgumentNullException>(() => Instance.SignOut(nullResource));
-        }
-
-
-        [Fact, Trait("Category", "Integration")]
         public void SignOut_UserIsSignedIn_ReturnsTrue()
         {
             // Arrange
             Instance.SignIn(_settings["officeGraphResource"]);
 
             // Act
-            var result = Instance.SignOut(_settings["officeGraphResource"]);
+            var result = Instance.SignOut();
 
             // Assert
             result.ShouldBeTrue();

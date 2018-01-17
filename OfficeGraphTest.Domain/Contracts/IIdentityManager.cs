@@ -8,6 +8,6 @@
 
         bool SignIn(string resource);
 
-        bool SignOut(string resource);
+        bool SignOut();
     }
 }

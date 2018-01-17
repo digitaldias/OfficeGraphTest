@@ -47,11 +47,8 @@ namespace OfficeGraphTest.Business
         }
 
 
-        public bool SignOut(string resource)
+        public bool SignOut()
         {
-            if (string.IsNullOrEmpty(resource))
-                throw new ArgumentNullException(nameof(resource));
-
             var logoutUri = new Uri($"{_settings["authority"]}/oauth2/logout?post_logout_redirect_uri={_settings["redirectUri"]}");
 
             _authenticationContext.TokenCache.Clear();
