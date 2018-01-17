@@ -8,14 +8,16 @@ namespace OfficeGraphExplorer.ViewModels
     {
         private readonly IOfficeGraphClient _officeGraphClient;
 
-        private GraphUser _me;
-        private byte[] _myImageUrl;
+        private GraphUser    _me;
+        private byte[]       _myImageUrl;
         private RelayCommand _reloadCommand;
-        private string _statusMessage;
+        private string       _statusMessage;
         private RelayCommand _getContactsCommand;
+
 
         public MainWindowViewModel()
         {
+            //TODO: Dirty, let's fix this sometime soon, and NOT use a static IoC Container for resolving dependencies!
             _officeGraphClient = App.IoC.GetInstance<IOfficeGraphClient>();
 
             var initalized = _officeGraphClient.Initialize();
@@ -23,6 +25,7 @@ namespace OfficeGraphExplorer.ViewModels
             // hmm, what to do..
         }
 
+        #region Bindable Properties and Commands 
 
         public string StatusMessage
         {
@@ -80,6 +83,10 @@ namespace OfficeGraphExplorer.ViewModels
             }
         }
 
+        #endregion
+
+
+        #region Private helper methods
 
         private async void OnGetContacts()
         {
@@ -116,5 +123,7 @@ namespace OfficeGraphExplorer.ViewModels
             _me = await _officeGraphClient.GetMyInformationAsync();
             AnnounceProperty("Me");
         }
+
+        #endregion
     }
 }
