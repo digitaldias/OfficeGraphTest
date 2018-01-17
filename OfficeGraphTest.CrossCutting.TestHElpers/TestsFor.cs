@@ -1,5 +1,7 @@
 ﻿using Moq;
 using StructureMap.AutoMocking.Moq;
+using System;
+using System.Threading.Tasks;
 
 namespace OfficeGraphTest.CrossCutting.TestHelpers
 {
@@ -28,6 +30,50 @@ namespace OfficeGraphTest.CrossCutting.TestHelpers
         {
             // No implementation here
         }
+
+
+        /// <summary>
+        /// Convenience method to verify is a specific exception was thrown or not
+        /// </summary>
+        /// <returns>True if the exception was actually thrown</returns>
+        public bool DoesThrow<TException>(Action testMethod) where TException : Exception
+        {
+            try
+            {
+                testMethod.Invoke();
+            }
+            catch(TException)
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Convenience method to verify is a specific exception was thrown or not. Also verifies 
+        /// aggregateexception's inner exception for the same type
+        /// </summary>
+        /// <returns>True if the exception was actually thrown</returns>
+
+        public async Task<bool> DoesThrowAsync<TException>(Func<Task> testMethod) where TException : Exception
+        {
+            try
+            {
+                await testMethod.Invoke();
+            }
+            catch(AggregateException agx)
+            {
+                if (agx.InnerException.GetType() == typeof(TException))
+                    return true;
+            }
+            catch (TException)
+            {
+                return true;
+            }
+            return false;
+        }
+
 
 
         /// <summary>
