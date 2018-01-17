@@ -12,5 +12,7 @@ namespace OfficeGraphTest.Domain.Contracts
         Task<byte[]> GetMyImageBytesAsync();
 
         Task<ContactList> GetMyContactsAsync();
+
+        Task SignOut();
     }
 }

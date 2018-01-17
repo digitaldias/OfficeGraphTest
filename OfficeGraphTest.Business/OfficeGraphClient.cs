@@ -24,6 +24,27 @@ namespace OfficeGraphTest.Business
         }
 
 
+        public bool Initialize()
+        {
+            if(_identityManager == null)
+            {
+                _logger.LogError("IdentityManager Is null");
+                return false;
+            }
+
+            var signInSuccess = _exceptionHandler.Get(() => 
+                _identityManager.SignIn(_settings["officeGraphResource"])
+             );            
+
+            if(!signInSuccess)
+            {
+                _logger.LogError("Unable to sign in successfully");
+                return false;
+            }
+            return signInSuccess;
+        }
+
+
         public async Task<ContactList> GetMyContactsAsync()
         {
             return await _exceptionHandler.GetAsync(async () =>
@@ -60,24 +81,16 @@ namespace OfficeGraphTest.Business
         }
 
 
-        public bool Initialize()
+        public async Task SignOut()
         {
-            if(_identityManager == null)
-            {
-                _logger.LogError("IdentityManager Is null");
-                return false;
-            }
+            var wasSignedOut = await _exceptionHandler.GetAsync( async () => {
+                return await Task.Run(() => _identityManager.SignOut());
+            });
 
-            var signInSuccess = _exceptionHandler.Get(() => 
-                _identityManager.SignIn(_settings["officeGraphResource"])
-             );            
-
-            if(!signInSuccess)
+            if (!wasSignedOut)
             {
-                _logger.LogError("Unable to sign in successfully");
-                return false;
+                _logger.logWarning("Something went wrong when signing out");
             }
-            return signInSuccess;
         }
     }
 }

@@ -203,6 +203,51 @@ namespace OfficeGraphTest.Business.UnitTests
         }
 
 
+        [Fact]
+        public async Task SignOut_WhenCalled_DoesNotThrowNotImplementedException()
+        {
+            // Act
+            var result = await DoesThrowAsync<NotImplementedException>(() => Instance.SignOut());
+
+            // Assert
+            result.ShouldBeFalse();
+        }
+
+
+        [Fact]
+        public async Task SignOut_SomethingFailsWithIdentityManager_LoggerLogsWarning()
+        {
+            // Arrange
+            GetMockFor<IIdentityManager>()
+                .Setup(o => o.SignOut())
+                .Returns(false);
+
+            // Act
+            var result = await DoesThrowAsync<NotImplementedException>(() => Instance.SignOut());
+
+            // Assert
+            GetMockFor<ILogger>()
+                .Verify(l => l.logWarning(It.IsAny<string>()), Times.Once());
+        }
+
+
+        [Fact]
+        public async Task SignOut_IdentityManagerReportsSuccess_LoggerIsNotInvoked()
+        {
+            // Arrange
+            GetMockFor<IIdentityManager>()
+                .Setup(o => o.SignOut())
+                .Returns(true);
+
+            // Act
+            var result = await DoesThrowAsync<NotImplementedException>(() => Instance.SignOut());
+
+            // Assert
+            GetMockFor<ILogger>()
+                .Verify(l => l.logWarning(It.IsAny<string>()), Times.Never());
+        }
+
+
         #region Helper properties and methods
 
 
