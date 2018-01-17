@@ -1,0 +1,10 @@
+{
+    "instructions"        : "Replace with or fill in your own values where you see square brackets: [like this]",
+    "author"              : "pedro@digitaldias.com",
+    "authority"           : "https://login.windows.net/[YOUR DOMAIN].onmicrosoft.com",
+    "clientDomain"        : "[YOUR DOMAIN].onmicrosoft.com",
+    "officeGraphResource" : "https://graph.microsoft.com" ,
+    "graphVersion"        : "v1.0",
+    "applicationId"       : "[Your application ID as registered in your active directory]",
+    "redirectUri"         : "[Must match exactly the redirect URL you made for your application]"
+}

@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeGraphTest.Data.Http",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeGraphExplorer", "OfficeGraphExplorer\OfficeGraphExplorer.csproj", "{456183A7-17A8-4AE5-BE45-5C49DDF725B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeGraphTest.Data.File", "OfficeGraphTest.Data.File\OfficeGraphTest.Data.File.csproj", "{F952F0A1-2BF2-4751-B1D8-BD248341A360}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{456183A7-17A8-4AE5-BE45-5C49DDF725B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{456183A7-17A8-4AE5-BE45-5C49DDF725B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{456183A7-17A8-4AE5-BE45-5C49DDF725B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F952F0A1-2BF2-4751-B1D8-BD248341A360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F952F0A1-2BF2-4751-B1D8-BD248341A360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F952F0A1-2BF2-4751-B1D8-BD248341A360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F952F0A1-2BF2-4751-B1D8-BD248341A360}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{F297293E-6F49-4ACB-B1A6-8BF6F548C35E} = {571D6F3A-0380-4F03-9A2B-B5FFFD5DC9D0}
 		{029A0FDB-FA3E-4CAE-A803-54A928948BD0} = {7DDA6A0B-E9E7-43B9-B1C7-798C0AA63591}
 		{456183A7-17A8-4AE5-BE45-5C49DDF725B3} = {89060004-4C0F-45F9-8B6B-4298D05A62F9}
+		{F952F0A1-2BF2-4751-B1D8-BD248341A360} = {7DDA6A0B-E9E7-43B9-B1C7-798C0AA63591}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1896FDEB-3C5E-4C7C-9352-3A40201115FC}

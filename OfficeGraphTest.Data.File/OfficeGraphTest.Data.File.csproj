@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6BA9AE7D-DDD4-403D-8860-3C220D77C350}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>OfficeGraphTest</RootNamespace>
-    <AssemblyName>OfficeGraphTest</AssemblyName>
+    <ProjectGuid>{F952F0A1-2BF2-4751-B1D8-BD248341A360}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OfficeGraphTest.Data.File</RootNamespace>
+    <AssemblyName>OfficeGraphTest.Data.File</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,11 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap, Version=4.5.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StructureMap.4.5.3\lib\net45\StructureMap.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1-beta3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,33 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependencyInversion\RuntimeRegistry.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OfficeGraphTest.Business\OfficeGraphTest.Business.csproj">
-      <Project>{37f53940-bf2e-459e-bd3f-c6f94497d6cf}</Project>
-      <Name>OfficeGraphTest.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OfficeGraphTest.Data.File\OfficeGraphTest.Data.File.csproj">
-      <Project>{f952f0a1-2bf2-4751-b1d8-bd248341a360}</Project>
-      <Name>OfficeGraphTest.Data.File</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OfficeGraphTest.Data.Http\OfficeGraphTest.Data.Http.csproj">
-      <Project>{029a0fdb-fa3e-4cae-a803-54a928948bd0}</Project>
-      <Name>OfficeGraphTest.Data.Http</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OfficeGraphTest.Domain\OfficeGraphTest.Domain.csproj">
       <Project>{283D7A4F-66A7-4E43-9045-B9B82617EA6E}</Project>
       <Name>OfficeGraphTest.Domain</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

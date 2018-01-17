@@ -60,7 +60,6 @@
     </ApplicationDefinition>
     <Compile Include="DependencyInversion\RuntimeRegistry.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Settings.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
@@ -108,6 +107,10 @@
     <ProjectReference Include="..\OfficeGraphTest.Business\OfficeGraphTest.Business.csproj">
       <Project>{37f53940-bf2e-459e-bd3f-c6f94497d6cf}</Project>
       <Name>OfficeGraphTest.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OfficeGraphTest.Data.File\OfficeGraphTest.Data.File.csproj">
+      <Project>{f952f0a1-2bf2-4751-b1d8-bd248341a360}</Project>
+      <Name>OfficeGraphTest.Data.File</Name>
     </ProjectReference>
     <ProjectReference Include="..\OfficeGraphTest.Data.Http\OfficeGraphTest.Data.Http.csproj">
       <Project>{029a0fdb-fa3e-4cae-a803-54a928948bd0}</Project>
