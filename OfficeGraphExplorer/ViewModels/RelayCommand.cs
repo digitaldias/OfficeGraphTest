@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
 
+// Not aiming to use CanExecuteChange in this code
+#pragma warning disable CS0067
+
 namespace OfficeGraphExplorer.ViewModels
 {
     public class RelayCommand : ICommand
@@ -36,3 +39,4 @@ namespace OfficeGraphExplorer.ViewModels
         }
     }
 }
+#pragma warning restore 67
