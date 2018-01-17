@@ -1,6 +1,8 @@
 ﻿using OfficeGraphTest.Domain.Contracts;
 using OfficeGraphTest.Domain.Entities;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace OfficeGraphExplorer.ViewModels
 {
@@ -14,6 +16,12 @@ namespace OfficeGraphExplorer.ViewModels
         private string       _statusMessage;
         private RelayCommand _getContactsCommand;
 
+        // SignIn Button
+        private string          _signInButtonText;
+        private Brush           _signInButtonColor;
+        private FontWeight      _signInButtonFontWeight;
+        private Brush           _signInButtonForeground;
+
 
         public MainWindowViewModel()
         {
@@ -22,10 +30,42 @@ namespace OfficeGraphExplorer.ViewModels
 
             var initalized = _officeGraphClient.Initialize();
 
-            // hmm, what to do..
+            _signInButtonText        = "Sign In";
+            _signInButtonColor       = new SolidColorBrush(Colors.DarkGreen);
+            _signInButtonFontWeight  = FontWeights.Bold;
+            _signInButtonForeground  = new SolidColorBrush(Colors.White);
         }
 
         #region Bindable Properties and Commands 
+
+
+        public Brush SignInButtonForeground
+        {
+            get { return _signInButtonForeground; }
+            set { _signInButtonForeground = value; AnnounceProperty(nameof(SignInButtonForeground)); }
+        }
+
+
+        public string SignInButtonText
+        {
+            get { return _signInButtonText;  }
+            set { _signInButtonText = value; AnnounceProperty(nameof(SignInButtonText)); }
+        }
+
+
+        public FontWeight SignInButtonFontWeight
+        {
+            get { return _signInButtonFontWeight; }
+            set { _signInButtonFontWeight = value; AnnounceProperty(nameof(SignInButtonFontWeight)); }
+        }
+
+
+        public Brush SignInButtonColor
+        {
+            get { return _signInButtonColor; }
+            set { _signInButtonColor = value; AnnounceProperty(nameof(SignInButtonColor)); }
+        }
+
 
         public string StatusMessage
         {
