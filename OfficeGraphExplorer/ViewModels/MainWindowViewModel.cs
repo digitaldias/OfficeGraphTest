@@ -1,5 +1,8 @@
 ﻿using OfficeGraphTest.Domain.Contracts;
 using OfficeGraphTest.Domain.Entities;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -14,7 +17,8 @@ namespace OfficeGraphExplorer.ViewModels
         private readonly IOfficeGraphClient _officeGraphClient;
 
         private GraphUser    _me;
-        private byte[]       _myImageUrl;
+        private byte[]       _myImageBytes;
+        private byte[]       _defaultImage;
         private RelayCommand _reloadCommand;
         private string       _statusMessage;
         private RelayCommand _getContactsCommand;
@@ -130,10 +134,10 @@ namespace OfficeGraphExplorer.ViewModels
         {
             get
             {
-                if (_myImageUrl == null)
+                if (_myImageBytes == null)
                     RetrieveMyImage();
 
-                return _myImageUrl;
+                return _myImageBytes;
 
             }
         }
@@ -166,7 +170,7 @@ namespace OfficeGraphExplorer.ViewModels
                 await _officeGraphClient.SignOut();
 
                 _me = null; AnnounceProperty(nameof(Me));
-                _myImageUrl = null; AnnounceProperty(nameof(MyImage));
+                _myImageBytes = null; AnnounceProperty(nameof(MyImage));
             }
             StatusMessage = "Ok";
         }
@@ -196,11 +200,35 @@ namespace OfficeGraphExplorer.ViewModels
 
         private async void RetrieveMyImage()
         {
-            _myImageUrl = await _officeGraphClient.GetMyImageBytesAsync();
+            _myImageBytes = await _officeGraphClient.GetMyImageBytesAsync();
 
-            if(_myImageUrl != null)
+            if(_myImageBytes == null)
             {
-                AnnounceProperty("MyImage");
+                if(_defaultImage == null)
+                {
+                    LoadDefaultImageFromEmbeddedResources();
+                }
+                _myImageBytes = _defaultImage;
+            }
+            AnnounceProperty("MyImage");
+        }
+
+
+        private void LoadDefaultImageFromEmbeddedResources()
+        {
+            var thisAssembly = Assembly.GetExecutingAssembly();
+            var embeddedImagePath = thisAssembly.GetManifestResourceNames()
+                .Where(name => name.EndsWith("man.png"))
+                .FirstOrDefault();
+
+            if (!string.IsNullOrEmpty(embeddedImagePath))
+            {
+                var imageStream = thisAssembly.GetManifestResourceStream(embeddedImagePath);
+                using (var memoryStream = new MemoryStream())
+                {
+                    imageStream.CopyTo(memoryStream);
+                    _defaultImage = memoryStream.ToArray();
+                }
             }
         }
 
