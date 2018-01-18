@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OfficeGraphExplorer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="825" Background="Silver">
+        Title="MainWindow" Height="750" Width="825" Background="BlanchedAlmond">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -23,9 +23,9 @@
 
         </Grid.RowDefinitions>
         
-        <!-- My own information -->
+        <!-- The page title  -->
         <Border BorderThickness="0 0 0 2" BorderBrush="Black" Grid.ColumnSpan="4" >
-            <TextBlock Text="All information from Microsoft Graph, including pics!"
+            <TextBlock Text="Microsoft Graph - Fo' fun!"
                        FontFamily="Segoe UI"
                        FontSize="32"                   
                        Foreground="Maroon"                   
@@ -51,7 +51,9 @@
                 MinHeight="200" 
                 BorderBrush="Black" 
                 BorderThickness="0" 
-                CornerRadius="0" 
+                CornerRadius="15" 
+                Background="White"
+                Margin="10"
                 Padding="15">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -92,7 +94,7 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <Border Background="Gray" Margin="5">
+                <Border Background="White" Margin="5">
                     
                 </Border>
                 
