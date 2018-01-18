@@ -8,7 +8,7 @@ using System.Windows;
 [assembly: AssemblyTitle("OfficeGraphExplorer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("digitaldias")]
 [assembly: AssemblyProduct("OfficeGraphExplorer")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
