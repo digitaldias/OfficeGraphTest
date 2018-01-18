@@ -23,6 +23,10 @@ namespace OfficeGraphTest.Business
             {
                 return unsafeFunction.Invoke();
             }
+            catch (AggregateException aex)
+            {
+                _logger.LogException(aex.InnerException);
+            }
             catch (Exception ex)
             {
                 _logger.LogException(ex);
@@ -38,6 +42,10 @@ namespace OfficeGraphTest.Business
             try
             {
                 return unsafeAsyncFunction.Invoke();
+            }
+            catch (AggregateException aex)
+            {
+                _logger.LogException(aex.InnerException);
             }
             catch (Exception ex)
             {
@@ -71,6 +79,10 @@ namespace OfficeGraphTest.Business
             try
             {
                 await unsafeAsyncFunc.Invoke();
+            }
+            catch (AggregateException aex)
+            {
+                _logger.LogException(aex.InnerException);
             }
             catch (Exception ex)
             {
