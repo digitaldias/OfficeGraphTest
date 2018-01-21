@@ -5,6 +5,7 @@ using System.Net.Http;
 
 namespace OfficeGraphTest.Business
 {
+    //TODO: Move the moving parts into data layer, so this can be mocked out
     public class IdentityManager : IIdentityManager
     {
         private readonly IExceptionHandler _exceptionHandler;

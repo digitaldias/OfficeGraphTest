@@ -6,12 +6,13 @@ namespace OfficeGraphExplorer.DependencyInversion
     {
         public RuntimeRegistry()
         {
-            // Don't you just love simple IoC Configurations? :)
             Scan(x => {
                 x.AssembliesAndExecutablesFromApplicationBaseDirectory();
 
                 x.WithDefaultConventions();
             });
+
+            //TODO: Add DEBUG conditionals for running unit-test-like structures
         }
     }
 }
