@@ -108,6 +108,10 @@
       <Project>{37f53940-bf2e-459e-bd3f-c6f94497d6cf}</Project>
       <Name>OfficeGraphTest.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OfficeGraphTest.Data.Fakes\OfficeGraphTest.Data.Fakes.csproj">
+      <Project>{16b8b7ae-2a18-44d8-84c7-026230205a61}</Project>
+      <Name>OfficeGraphTest.Data.Fakes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OfficeGraphTest.Data.File\OfficeGraphTest.Data.File.csproj">
       <Project>{f952f0a1-2bf2-4751-b1d8-bd248341a360}</Project>
       <Name>OfficeGraphTest.Data.File</Name>
