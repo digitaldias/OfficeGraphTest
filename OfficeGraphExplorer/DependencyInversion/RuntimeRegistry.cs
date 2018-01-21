@@ -18,6 +18,7 @@ namespace OfficeGraphExplorer.DependencyInversion
 #if DEBUG
             // Replace all outgoing calls with fakes
             For<IIdentityManager>().Use<FakeIdentityManager>();
+            For<IOfficeGraphReader>().Use<FakeOfficeGraphReader>();
 #endif
         }
     }
