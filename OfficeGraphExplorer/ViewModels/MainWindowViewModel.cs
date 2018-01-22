@@ -181,8 +181,6 @@ namespace OfficeGraphExplorer.ViewModels
 
             var contacts = await _officeGraphClient.GetMyContactsAsync();
 
-
-
             StatusMessage = "Contacts retrieval complete";
         }
 

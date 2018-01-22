@@ -14,7 +14,6 @@ namespace OfficeGraphExplorer.DependencyInversion
                 x.WithDefaultConventions();
             });
 
-            //TODO: Add DEBUG conditionals for running unit-test-like structures
 #if DEBUG
             // Replace all outgoing calls with fakes
             For<IIdentityManager>().Use<FakeIdentityManager>();
