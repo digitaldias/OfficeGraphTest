@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace OfficeGraphTest.Data.Fakes
 {
-    //TODO: Dammit, need internet connection to download sample data!! 
     public class FakeOfficeGraphReader : IOfficeGraphReader
     {
         public async Task<byte[]> GetImageBytesAsync(string bearerToken)
